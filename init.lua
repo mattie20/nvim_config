@@ -51,33 +51,19 @@ vim.opt.termguicolors = true
 
 --================= Key Bindings ===============
 
-vim.keymap.set('i', 'jk', '<esc>')
+vim.keymap.set({ 'i', 'v'}, 'jk', '<esc>')
 
-vim.keymap.set('i', 'kj', '<esc>')
+vim.keymap.set({ 'i', 'v'}, 'kj', '<esc>')
 
-vim.keymap.set('v', 'jk', '<esc>')
+vim.keymap.set({'n','v'}, '<S-j>', 'gT')
 
-vim.keymap.set('v', 'kj', '<esc>')
-
-vim.keymap.set('n', '<S-j>', '5j')
-
-vim.keymap.set('n', '<S-k>', '5k')
-
-vim.keymap.set('v', '<S-j>', '5j')
-
-vim.keymap.set('v', '<S-k>', '5k')
-
-vim.keymap.set('n', '<S-y>', '5<C-y>')
+vim.keymap.set({'n','v'}, '<S-k>', 'gt')
 
 vim.keymap.set('n', '<S-e>', '5<C-e>')
 
-vim.keymap.set('n', ';', '$')
+vim.keymap.set({'n','v'}, ';', '$')
 
-vim.keymap.set('n', 'f', '0')
-
-vim.keymap.set('v', ';', '$')
-
-vim.keymap.set('v', 'f', '0')
+vim.keymap.set({'n','v'}, 'f', '0')
 
 vim.keymap.set('n', '<space>', '/')
 
@@ -85,7 +71,7 @@ vim.keymap.set('n', '<A-k>', 'ddkP')
 
 vim.keymap.set('n', '<A-j>', 'ddjP')
 
-vim.keymap.set( 'n', '<space>ff', '<cmd>lua require("telescope.builtin").find_files({cwd = "/", hidden = true})<CR>', {silent = true})
+vim.keymap.set( 'n', '<space>ff', '<cmd>lua require("telescope.builtin").find_files({cwd = "$HOME", hidden = true})<CR>', {silent = true})
 
 -- vim.keymap.set( 'n', '<space>ff', require("telescope.builtin").find_files({cwd = "/", hidden = true}), {silent = true})
 
@@ -93,7 +79,7 @@ vim.keymap.set( 'n', '<space>fg', '<cmd>lua require("telescope.builtin").live_gr
 
 vim.keymap.set( 'n', '<space>fs', '<cmd>lua require("telescope.builtin").grep_string({grep_open_files = true, hidden = true})<CR>', {silent = true})
 
-vim.api.nvim_set_keymap( 'n', '<space>fb', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({ previewer = false })<CR>', { noremap=true, silent = true})
+vim.keymap.set( 'n', '<space>fb', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find({ previewer = false })<CR>', { noremap=true, silent = true})
 
 --==================== Plug ins =================
 
@@ -103,19 +89,21 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 
 --Plug 'honza/vim-snippets'
 --Plug 'mhinz/vim-startify'
+
 --============= Themes =========================
 Plug 'tanvirtin/monokai.nvim'
+Plug 'sainnhe/sonokai'
+Plug('catppuccin/nvim', {as = 'catppuccin '})
+Plug 'vim-airline/vim-airline'
+
+--============= Plugins =========================
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-lua/plenary.nvim'
 Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'})
-Plug 'sainnhe/sonokai'
-Plug 'marko-cerovac/material.nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'p00f/nvim-ts-rainbow'
-Plug('catppuccin/nvim', {as = 'catppuccin '})
-Plug 'nvim-tree/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+
 vim.fn['plug#end']()
+
 
 vim.cmd[[ colorscheme sonokai ]]
 
@@ -166,36 +154,9 @@ require('telescope').setup{
     }
 }
 
-require('nvim-web-devicons').setup {
- -- globally enable different highlight colors per icon (default to true)
- -- if set to false all icons will have the default icon's color
- color_icons = true;
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
- default = true;
- -- globally enable "strict" selection of icons - icon will be looked up in
- -- different tables, first by filename, and if not found by extension; this
- -- prevents cases when file doesn't have any extension but still gets some icon
- -- because its name happened to match some extension (default to false)
- strict = true;
- -- same as `override` but specifically for overrides by filename
- -- takes effect when `strict` is true
- override_by_filename = {
-  [".gitignore"] = {
-    icon = "",
-    color = "#f1502f",
-    name = "Gitignore"
-  }
- };
- -- same as `override` but specifically for overrides by extension
- -- takes effect when `strict` is true
- override_by_extension = {
-  ["log"] = {
-    icon = "",
-    color = "#81e043",
-    name = "Log"
-  }
- };
-}
+
+
+
+
 
 
