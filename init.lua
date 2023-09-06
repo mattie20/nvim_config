@@ -94,23 +94,18 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 Plug 'tanvirtin/monokai.nvim'
 Plug 'sainnhe/sonokai'
 Plug('catppuccin/nvim', {as = 'catppuccin '})
-Plug 'vim-airline/vim-airline'
 
 --============= Plugins =========================
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-lua/plenary.nvim'
 Plug('nvim-telescope/telescope.nvim', {branch = '0.1.x'})
-Plug 'folke/trouble.nvim'
 
 vim.fn['plug#end']()
-
-
+-- #66d9ef #76cce0
+vim.api.nvim_set_hl(0,'statline', { fg = '#66d9ef', bg = '#3b3e48'})
+vim.cmd[[set statusline=\ [%{mode()}\]\ %#statline#%<%F\%m\%#statusline#%=\ \[\ %P\ Line:%l\/%L\ ]\ ]]
 vim.cmd[[ colorscheme sonokai ]]
 
-
-vim.g.airline_powerline_fonts = 1
-vim.g.airline_section_z = '%p%% Line:%l/%L'
-vim.g.airline_extensions = {}
 
 vim.g.vimwiki_list = {{syntax = 'markdown'}}
 
@@ -144,7 +139,6 @@ require'nvim-treesitter.configs'.setup{
     },
 }
 
-require('trouble').setup()
 
 require('telescope').setup{
 
