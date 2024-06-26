@@ -13,8 +13,6 @@ vim.opt.swapfile = false
 
 vim.opt.undofile = true
 
--- vim.opt.updatetime = 50
-
 vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
@@ -51,22 +49,21 @@ local Plug = vim.fn['plug#']
 
 vim.fn['plug#begin']('~/.config/nvim/plugged')
 
---============= Themes =========================
-Plug 'tanvirtin/monokai.nvim'
-Plug 'sainnhe/sonokai'
-
---============= Plugins =========================
+Plug('sainnhe/sonokai')
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('ibhagwan/fzf-lua', { ['branch'] = 'main'})
 
 vim.fn['plug#end']()
 
-vim.cmd[[ colorscheme sonokai ]]
+vim.cmd.colorscheme('sonokai')
 
 --============= Statusline ======================
-vim.api.nvim_set_hl(0,'statline', { fg = '#66d9ef', bg = '#3b3e48'})
-vim.cmd[[set statusline=\ [%{mode()}\]\ \ %#statline#%<%f\%m\%#statusline#%=\ \[\ %P\ Line:%l\/%L\ ]\ ]]
 
+vim.api.nvim_set_hl(0,'User2', { fg = '#66d9ef', bg = '#3b3e48'})
+
+vim.cmd[[set statusline=\ [%{mode()}\]\ \ %2*%<%f\%m\%*%=\ \[\ %P\ Line:%l\/%L\ ]\ ]]
+
+--============= Plugin Setup ======================
 
 require'nvim-treesitter.configs'.setup{
 
@@ -81,8 +78,8 @@ require'nvim-treesitter.configs'.setup{
     incremental_selection = {
 	enable = true,
         keymaps = {
-          -- init_selection = '<CR>',
-          -- scope_incremental = '<CR>',
+          init_selection = '<CR>',
+          scope_incremental = '<CR>',
           node_incremental = '<TAB>',
           node_decremental = '<S-TAB>'
         },
